@@ -11,7 +11,7 @@ function reverseString(str) {
 	// reverse() is a method of array instances
 	// It won't work on a string, so you'll have to spilt the string into an array
 	// then reverse it, then put it back together
-	return str.split('').reverse().join('');
+	return str.split('').reverse().join('').trim();
 }
 
 /**
@@ -19,16 +19,18 @@ function reverseString(str) {
  * @param string str - the user input
  * @return - the user's modify input
  */
-function handle_input(str, callback) {
+function handle_input(callback) {
 	var stdin = process.stdin;
 	stdin.resume();
 	stdin.once('data', function(data) {
-		data = reverseString(data);
-		callback(data);
+		data.toString().trim();
+		callback(reverseString(data));
 	});
 }
-console.log("Enter the String you want to reverse!")
-handle_input("String", function(str) {
+
+console.log("Enter the String you want to reverse!");
+
+handle_input(function(str) {
 	console.log("Reversed String: ", str);
 	process.exit();
 });
